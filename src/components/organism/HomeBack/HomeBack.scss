@@ -1,0 +1,21 @@
+@import 'src/assets/variables.scss';
+
+.spikes {
+  position: relative;
+  background: $gray;
+  height: 50vh;
+  width: 100%;
+}
+
+.spikes::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: -0%;
+  top: 100%;
+  z-index: 10;
+  height: 100px;
+    width: 100%;
+    background: -webkit-gradient(radial, 50% 0, 10, 50% 0, 40, from($gray), color-stop(0.49, $gray), color-stop(0.51, $white), to($white));
+    -webkit-background-size: 49px 100%;
+}

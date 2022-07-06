@@ -1,0 +1,14 @@
+@import 'src/assets/variables.scss';
+
+.header {
+    height: 3rem;
+    width: 100%;
+    background-color: $yellow;
+    position: absolute;
+    top: 0;
+    z-index: 98;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

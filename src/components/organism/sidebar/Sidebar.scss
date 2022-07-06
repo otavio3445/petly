@@ -1,0 +1,33 @@
+@import 'src/assets/variables.scss';
+
+.sidebar {
+    background-color: $yellow;
+    height: 100vh;
+    transition: all 1s ease;
+    text-align: center;
+    padding: 10px;
+    z-index: 99;
+    box-sizing: border-box;
+}
+.opened {
+    width: 320px;
+}
+.closed {
+    width: 60px;
+    clear: both;
+}
+.floatIcon {
+    float: right;
+}
+.noFloat {
+    float: none;
+}
+.iconePerfil {
+    transition: all 1.2s ease;
+}
+.bigPic {
+    font-size: 130px;
+}
+.smallPic {
+    font-size: 30px;
+}
