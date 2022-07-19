@@ -18,6 +18,10 @@
 }
 .floatIcon {
     float: right;
+    &:hover {
+        cursor: pointer;
+        color: rgba(0,0,0,.5);
+    }
 }
 .noFloat {
     float: none;
@@ -30,4 +34,27 @@
 }
 .smallPic {
     font-size: 30px;
+}
+.icons-links {
+    margin-top: 2rem;
+    & svg:hover {
+        cursor: pointer;
+        color: rgba(0,0,0,.5);
+    }
+}
+.link-icon {
+    margin-bottom: 1rem;
+}
+.text-link {
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    &:hover {
+        cursor: pointer;
+        color: rgba(0,0,0,.5);
+
+    }
 }
