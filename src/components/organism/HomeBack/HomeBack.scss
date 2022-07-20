@@ -48,7 +48,7 @@
 .viewMore {
   display: flex;
   position: absolute;
-  width: 95vw;
+  width: 100%;
   bottom: -2%;
 
   & p.line {
@@ -87,11 +87,52 @@
 .products {
   width: 100%;
   height: 50vh;
+  transition: all .8s ease;
+  position: relative;
   &-section {
     padding-top: 3rem;
+  }
+  &-hei {
+    height: 95vh;
+  }
+  &-hei-not {
+    height: 50vh;
   }
 }
 
 #carouselPet, #carouselProducts {
   padding-left: 1rem;
+}
+#carouselPet, #carouselProducts {
+  margin: auto;
+  height: 30vh;
+  width: 74vw;
+  @media only screen and (min-width: 1366px) {
+    width: 70vw;
+  }
+}
+
+.allPets, .allProducts {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  height: 78vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.allProducts {
+  height: 70vh;
+}
+.cardHolder {
+  padding: 10px;
+  box-sizing: border-box;
+  &:hover{
+    transform: scale(1.1);
+  }
+}
+.itemTitle {
+  text-align: center;
+  width: 100%;
+}
+.slick-next:before, .slick-prev:before {
+  color: $orange;
 }
