@@ -4,11 +4,13 @@
 
 #spikes.maximize {
   min-height: 100vh;
-  & > .cardPets-section{
+
+  &>.cardPets-section {
     overflow: auto;
     overflow-x: hidden;
   }
 }
+
 #spikes.minimize {
   min-height: 50vh;
   // height: 50vh;
@@ -17,11 +19,12 @@
 #spikes.hidded {
   min-height: 1vh;
   // display: none;
-  
+
   &::after {
     background: none;
   }
 }
+
 .spikes {
   transition: all 1.5s ease;
   position: relative;
@@ -89,50 +92,92 @@
   height: 50vh;
   transition: all .8s ease;
   position: relative;
+
   &-section {
     padding-top: 3rem;
   }
+
   &-hei {
     height: 95vh;
   }
+
   &-hei-not {
     height: 50vh;
   }
 }
 
-#carouselPet, #carouselProducts {
+#carouselPet,
+#carouselProducts {
   padding-left: 1rem;
 }
-#carouselPet, #carouselProducts {
+
+#carouselPet,
+#carouselProducts {
   margin: auto;
   height: 30vh;
   width: 74vw;
+
   @media only screen and (min-width: 1366px) {
     width: 70vw;
   }
 }
 
-.allPets, .allProducts {
+.allPets,
+.allProducts {
   display: grid;
   grid-template-columns: auto auto auto auto;
   height: 78vh;
   overflow-y: auto;
   overflow-x: hidden;
 }
+
 .allProducts {
   height: 70vh;
 }
+
 .cardHolder {
   padding: 10px;
   box-sizing: border-box;
-  &:hover{
+
+  &:hover {
     transform: scale(1.1);
   }
 }
+
 .itemTitle {
   text-align: center;
   width: 100%;
 }
-.slick-next:before, .slick-prev:before {
+
+.filterProducts {
+  display: flex;
+  padding-left: 2rem;
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 3px solid;
+  & div select {
+    width: 50%;
+    border: 2px solid;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+  & div {
+    width: 25%;
+    display: inherit;
+    justify-content: center;
+  }
+  & div:not(:first-child) {
+    width: 35%;
+    display: inherit;
+    justify-content: start;
+    padding-left: 50px;
+  }
+}
+
+.slick-next:before,
+.slick-prev:before {
   color: $orange;
 }

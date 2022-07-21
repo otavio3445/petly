@@ -51,6 +51,24 @@ function HomeBack() {
           </div>}
           {hidePetCarousel && <div>
             <h1 className="itemTitle">Pets para adoção</h1>
+            <div className="filterProducts">
+              <div>
+                <label>Espécie</label>
+                <select>
+                  <option>Gato</option>
+                  <option>Cachorro</option>
+                  <option>Pássaro</option>
+                </select>
+              </div>
+              <div>
+                <label>Filtrar por:</label>
+                <select>
+                  <option>Raça</option>
+                  <option>Tamanho</option>
+                  <option>Pelagem</option>
+                </select>
+              </div>
+            </div>
             <div className="allPets">
             {fakeArr.map((element, index) => {
               return (
@@ -92,6 +110,24 @@ function HomeBack() {
           </div>}
           {hideProdCarousel && <div>
             <h1 className='itemTitle'>Produtos para o seu pet</h1>
+            <div className="filterProducts">
+              <div>
+                <label>Produto</label>
+                <select>
+                  <option>Ração</option>
+                  <option>Shampoo</option>
+                  <option>Coleira</option>
+                </select>
+              </div>
+              <div>
+                <label>Filtrar por:</label>
+                <select>
+                  <option>Marca</option>
+                  <option>Preço (Maior - Menor)</option>
+                  <option>Preço (Menor - Maior)</option>
+                </select>
+              </div>
+            </div>
             <div className="allProducts">
               {fakeArr.map((element, index) => {
                 return (
