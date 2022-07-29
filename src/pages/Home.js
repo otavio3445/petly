@@ -5,11 +5,12 @@ import Sidebar from '../components/organism/sidebar/Sidebar';
 import './global.scss';
 
 const Home = () => {
+  
   return (
     <div className='Home'>
         <Sidebar/>
         <Header/>
-        <HomeBack/>
+        <HomeBack />
     </div>
   )
 }

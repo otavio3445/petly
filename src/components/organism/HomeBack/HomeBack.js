@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CardPet from '../../molecules/card-pet/CardPet';
 import './HomeBack.scss';
 import Slider from "react-slick";
 import CardProduct from '../../molecules/card-product/CardProduct';
-
+import { all_pets, getDocsFB } from '../../../resources/db';
+import {getDocs} from '@firebase/firestore'
 function HomeBack() {
 
   const [maximize, setmaximize] = useState(false);
@@ -11,6 +12,8 @@ function HomeBack() {
   const [hidePet, sethidePet] = useState(false);
   const [hidePetCarousel, sethidePetCarousel] = useState(false);
   const [hideProdCarousel, sethideProdCarousel] = useState(false);
+  
+  const [petsData, setpetsData] = useState([]);
 
   const settings = {
     dots: true,
@@ -32,6 +35,20 @@ function HomeBack() {
   let fakeArr = [
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
   ]
+  
+  useEffect(() => {
+    (async () => {
+      const pets = await getDocsFB();
+      const aux = []
+      pets.forEach(pet => {
+        // console.log(pet.data());
+        let data = pet.data();
+        aux.push(data);
+      })
+      // console.log(aux);
+      setpetsData([...aux]);
+    })();
+  }, []);
 
   return (
     <div style={{ width: '100%' }}>
@@ -39,14 +56,9 @@ function HomeBack() {
         <div className="cardPets-section">
           {!hidePetCarousel && <div id="carouselPet">
             <Slider {...settings}>
-              <CardPet />
-              <CardPet />
-              <CardPet />
-              <CardPet />
-              <CardPet />
-              <CardPet />
-              <CardPet />
-              <CardPet />
+              {petsData.length > 0 && petsData.map((el) => (
+                <CardPet data={el}/>
+              ))}
             </Slider>
           </div>}
           {hidePetCarousel && <div>
