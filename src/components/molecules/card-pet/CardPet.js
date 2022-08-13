@@ -1,8 +1,10 @@
 import React from 'react';
 import './CardPet.scss';
+import { useNavigate } from "react-router-dom";
 
 function CardPet({ data }) {
-  console.log(data);
+  const history = useNavigate();
+
   return (
     <div className='cardPet'>
         <div className="cardPet-header">
@@ -15,7 +17,9 @@ function CardPet({ data }) {
         <div className="cardPet-fila">
             {data.fila} pessoa(s) na fila
         </div>
-        <div className="cardPet-button">Quero Adotar!</div>
+        <div className="cardPet-button" onClick={() => {
+          history("/detalhes-pet", {state:{data: data}});
+        }}>Quero Adotar!</div>
     </div>
   )
 }

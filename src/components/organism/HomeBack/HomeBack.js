@@ -3,15 +3,9 @@ import CardPet from '../../molecules/card-pet/CardPet';
 import './HomeBack.scss';
 import Slider from "react-slick";
 import CardProduct from '../../molecules/card-product/CardProduct';
-import { all_pets, getDocsFB } from '../../../resources/db';
-import {getDocs} from '@firebase/firestore'
+import { getDocsFB } from '../../../resources/db';
+import { useNavigate } from "react-router-dom";
 function HomeBack() {
-
-  const [maximize, setmaximize] = useState(false);
-  const [maximizeProducts, setmaximizeProducts] = useState(false);
-  const [hidePet, sethidePet] = useState(false);
-  const [hidePetCarousel, sethidePetCarousel] = useState(false);
-  const [hideProdCarousel, sethideProdCarousel] = useState(false);
   
   const [petsData, setpetsData] = useState([]);
 
@@ -32,82 +26,44 @@ function HomeBack() {
     slidesToScroll: 1,
     arrows: true
   };
-  let fakeArr = [
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-  ]
   
   useEffect(() => {
     (async () => {
       const pets = await getDocsFB();
       const aux = []
       pets.forEach(pet => {
-        // console.log(pet.data());
         let data = pet.data();
         aux.push(data);
       })
-      // console.log(aux);
       setpetsData([...aux]);
     })();
   }, []);
 
+  const history = useNavigate();
+
   return (
     <div style={{ width: '100%' }}>
-      <section id="spikes" class={`spikes ${maximize ? 'maximize' : maximizeProducts ? 'hidded' : 'minimize'}`}>
+      <section id="spikes" className={`spikes minimize`}>
         <div className="cardPets-section">
-          {!hidePetCarousel && <div id="carouselPet">
+          <div id="carouselPet">
             <Slider {...settings}>
-              {petsData.length > 0 && petsData.map((el) => (
-                <CardPet data={el}/>
+              {petsData.length > 0 && petsData.map((el, index) => (
+                <CardPet data={el} key={index}/>
               ))}
             </Slider>
-          </div>}
-          {hidePetCarousel && <div>
-            <h1 className="itemTitle">Pets para adoção</h1>
-            <div className="filterProducts">
-              <div>
-                <label>Espécie</label>
-                <select>
-                  <option>Gato</option>
-                  <option>Cachorro</option>
-                  <option>Pássaro</option>
-                </select>
-              </div>
-              <div>
-                <label>Filtrar por:</label>
-                <select>
-                  <option>Raça</option>
-                  <option>Tamanho</option>
-                  <option>Pelagem</option>
-                </select>
-              </div>
-            </div>
-            <div className="allPets">
-            {fakeArr.map((element, index) => {
-              return (
-                <div className='cardHolder'>
-                  <CardPet />
-                </div>
-              )
-            })}
-            </div>
-          </div>}
+          </div>
           <div className="viewMore">
             <p className="line"></p>
             <div className="viewMore-button" onClick={() => {
-              setmaximize(!maximize);
-              setTimeout(() => {
-                hidePetCarousel ?
-                  sethidePetCarousel(!hidePetCarousel) :
-                  sethidePetCarousel(!hidePetCarousel)
-              }, (hidePetCarousel ? 100 : 800));
-            }}>Ver {maximize ? 'Menos' : 'Todos'}</div>
+              history("/pets", {state:{data: petsData}});
+            }}>Ver todos</div>
             <p className="line"></p>
           </div>
         </div>
       </section>
-      <section className={`products ${maximizeProducts ? 'products-hei' : '-hei-not'}`}>
+      <section className={`products -hei-not`}>
         <div className="products-section">
-          {!hideProdCarousel && <div id="carouselProducts">
+          <div id="carouselProducts">
             <Slider {...settingsPro}>
               <CardProduct />
               <CardProduct />
@@ -119,53 +75,11 @@ function HomeBack() {
               <CardProduct />
               <CardProduct />
             </Slider>
-          </div>}
-          {hideProdCarousel && <div>
-            <h1 className='itemTitle'>Produtos para o seu pet</h1>
-            <div className="filterProducts">
-              <div>
-                <label>Produto</label>
-                <select>
-                  <option>Ração</option>
-                  <option>Shampoo</option>
-                  <option>Coleira</option>
-                </select>
-              </div>
-              <div>
-                <label>Filtrar por:</label>
-                <select>
-                  <option>Marca</option>
-                  <option>Preço (Maior - Menor)</option>
-                  <option>Preço (Menor - Maior)</option>
-                </select>
-              </div>
-            </div>
-            <div className="allProducts">
-              {fakeArr.map((element, index) => {
-                return (
-                  <div className="cardHolder">
-                    <CardProduct />
-                  </div>
-                )
-              })}
-            </div>
-          </div>}
-          <div className={`viewMore reset-bottom ${maximize ? 'hide-bar' : ''}`}>
+          </div>
+          <div className={`viewMore reset-bottom`}>
             <p className="line"></p>
             <div className="viewMore-button" onClick={() => {
-              setmaximizeProducts(!maximizeProducts);
-              sethidePet(!hidePet);
-              setTimeout(() => {
-                hidePet ?
-                  document.querySelector('#carouselPet').style.display = 'block' :
-                  document.querySelector('#carouselPet').style.display = 'none'
-              }, (hidePet ? 700 : 100));
-              setTimeout(() => {
-                hideProdCarousel ?
-                  sethideProdCarousel(!hideProdCarousel) :
-                  sethideProdCarousel(!hideProdCarousel)
-              }, (hideProdCarousel ? 100 : 800));
-            }}>Ver {maximizeProducts ? 'Menos' : 'Todos'}</div>
+            }}>Ver todos</div>
             <p className="line"></p>
           </div>
         </div>
