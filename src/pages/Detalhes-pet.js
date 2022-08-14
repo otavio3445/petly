@@ -1,18 +1,18 @@
 import React from 'react';
+import Detalhes from '../components/organism/DetalhesPet/Detalhes';
 import Header from '../components/organism/header/Header';
-import HomeBack from '../components/organism/HomeBack/HomeBack';
 import Sidebar from '../components/organism/sidebar/Sidebar';
 import './global.scss';
 
-const Home = () => {
+const DetalhesPet = () => {
   
   return (
     <div className='Home'>
         <Sidebar/>
         <Header/>
-        <HomeBack />
+        <Detalhes />
     </div>
   )
 }
 
-export default Home
+export default DetalhesPet

@@ -1,0 +1,16 @@
+@import 'src/assets/variables.scss';
+
+.detalhesPet {
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    padding-top: 3rem;
+
+    &-gray, &-white {
+        width: 50%;
+        height: inherit;
+    }
+    &-gray {
+        background-color: $gray;
+    }
+}
