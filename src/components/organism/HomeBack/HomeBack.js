@@ -3,11 +3,12 @@ import CardPet from '../../molecules/card-pet/CardPet';
 import './HomeBack.scss';
 import Slider from "react-slick";
 import CardProduct from '../../molecules/card-product/CardProduct';
-import { getDocsFB } from '../../../resources/db';
+import { getDocsFB, getDocsProdsFB } from '../../../resources/db';
 import { useNavigate } from "react-router-dom";
 function HomeBack() {
-  
+
   const [petsData, setpetsData] = useState([]);
+  const [prodsData, setprodsData] = useState([]);
 
   const settings = {
     dots: true,
@@ -26,16 +27,27 @@ function HomeBack() {
     slidesToScroll: 1,
     arrows: true
   };
-  
+
   useEffect(() => {
     (async () => {
       const pets = await getDocsFB();
-      const aux = []
+      const products = await getDocsProdsFB();
+
+      const aux = [];
+      const auxProd = [];
+
       pets.forEach(pet => {
         let data = pet.data();
         aux.push(data);
-      })
+      });
+
+      products.forEach(prod => {
+        let data = prod.data();
+        auxProd.push(data);
+      });
+
       setpetsData([...aux]);
+      setprodsData([...auxProd]);
     })();
   }, []);
 
@@ -48,14 +60,14 @@ function HomeBack() {
           <div id="carouselPet">
             <Slider {...settings}>
               {petsData.length > 0 && petsData.map((el, index) => (
-                <CardPet data={el} key={index}/>
+                <CardPet data={el} key={index} />
               ))}
             </Slider>
           </div>
           <div className="viewMore">
             <p className="line"></p>
             <div className="viewMore-button" onClick={() => {
-              history("/pets", {state:{data: petsData}});
+              history("/pets", { state: { data: petsData } });
             }}>Ver todos</div>
             <p className="line"></p>
           </div>
@@ -65,20 +77,18 @@ function HomeBack() {
         <div className="products-section">
           <div id="carouselProducts">
             <Slider {...settingsPro}>
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
+              {prodsData.length > 0 && prodsData.map((el, index) => {
+                console.log(el);
+                return (
+                  <CardProduct key={index} data={el}/>
+                )
+              })}
             </Slider>
           </div>
           <div className={`viewMore reset-bottom`}>
             <p className="line"></p>
             <div className="viewMore-button" onClick={() => {
+              history("/produtos", { state: { data: prodsData } });
             }}>Ver todos</div>
             <p className="line"></p>
           </div>

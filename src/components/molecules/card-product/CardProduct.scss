@@ -33,3 +33,20 @@
         cursor: pointer;
     }
 }
+
+.nameProd {
+    position: absolute;
+    top: 0;
+    background-color: $yellow;
+    font-weight: bold;
+    height: 90%;
+    padding: 1rem;
+    text-align: center;
+    margin: auto;
+    font-size: 15px;
+    opacity: 0;
+    transition: all ease 1s;
+    &:hover{
+        opacity: 1;
+    }
+}
