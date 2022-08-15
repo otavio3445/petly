@@ -18,9 +18,15 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
 const bd_pets = collection(firestore, "Pets");
-export const all_pets = bd_pets;
+const bd_produtos = collection(firestore, "Products");
+
 export async function getDocsFB() {
-    const pets = await getDocs(all_pets);
+    const pets = await getDocs(bd_pets);
     return pets
+}
+
+export async function getDocsProdsFB() {
+    const products = await getDocs(bd_produtos);
+    return products
 }
 // const bd_pets = collection(firestore, "bd-petly");
