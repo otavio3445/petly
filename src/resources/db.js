@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from '@firebase/firestore'
+import { getFirestore, collection, getDocs, addDoc } from '@firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -19,6 +19,7 @@ const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
 const bd_pets = collection(firestore, "Pets");
 const bd_produtos = collection(firestore, "Products");
+const bd_users = collection(firestore, "Users");
 
 export async function getDocsFB() {
     const pets = await getDocs(bd_pets);
@@ -26,7 +27,16 @@ export async function getDocsFB() {
 }
 
 export async function getDocsProdsFB() {
-    const products = await getDocs(bd_produtos);
-    return products
+  const products = await getDocs(bd_produtos);
+  return products
+}
+
+export async function getUsersFB() {
+    const users = await getDocs(bd_users);
+    return users
+}
+
+export async function setUsersFB(data) {
+    return await addDoc(bd_users, data).then((result) => result);
 }
 // const bd_pets = collection(firestore, "bd-petly");

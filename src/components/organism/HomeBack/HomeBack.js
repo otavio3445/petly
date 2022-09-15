@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import CardProduct from '../../molecules/card-product/CardProduct';
 import { getDocsFB, getDocsProdsFB } from '../../../resources/db';
 import { useNavigate } from "react-router-dom";
-function HomeBack() {
+function HomeBack(props) {
 
   const [petsData, setpetsData] = useState([]);
   const [prodsData, setprodsData] = useState([]);
@@ -78,7 +78,6 @@ function HomeBack() {
           <div id="carouselProducts">
             <Slider {...settingsPro}>
               {prodsData.length > 0 && prodsData.map((el, index) => {
-                console.log(el);
                 return (
                   <CardProduct key={index} data={el}/>
                 )

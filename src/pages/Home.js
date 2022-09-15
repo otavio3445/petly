@@ -4,13 +4,13 @@ import HomeBack from '../components/organism/HomeBack/HomeBack';
 import Sidebar from '../components/organism/sidebar/Sidebar';
 import './global.scss';
 
-const Home = () => {
+const Home = (props) => {
   
   return (
     <div className='Home'>
-        <Sidebar/>
+        <Sidebar isLogged={props.isLogged}/>
         <Header/>
-        <HomeBack />
+        <HomeBack isLogged={props.isLogged}/>
     </div>
   )
 }
