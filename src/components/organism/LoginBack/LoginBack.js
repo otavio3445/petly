@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './LoginBack.scss';
 import { useNavigate } from 'react-router-dom';
 import { getUsersFB } from '../../../resources/db';
@@ -15,7 +15,6 @@ const LoginBack = ({ changeLog }) => {
         const users = await getUsersFB();
         if (email !== "" && senha !== "") {
             users.forEach(user => {
-                console.log(user.data().email);
                 if (email === user.data().email) {
                     changeLog(user.data());
                     history("/");

@@ -1,18 +1,18 @@
 import React from 'react';
-import Detalhes from '../components/organism/DetalhesPet/Detalhes';
 import Header from '../components/organism/header/Header';
+import PerfilBack from '../components/organism/PerfilBack/PerfilBack';
 import Sidebar from '../components/organism/sidebar/Sidebar';
 import './global.scss';
 
-const DetalhesPet = (props) => {
+const Perfil = (props) => {
   
   return (
     <div className='Home'>
         <Sidebar isLogged={props.isLogged}/>
         <Header/>
-        <Detalhes />
+        <PerfilBack changeLog={props.changeLog} isLogged={props.isLogged}/>
     </div>
   )
 }
 
-export default DetalhesPet
+export default Perfil

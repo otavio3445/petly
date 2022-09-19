@@ -31,7 +31,7 @@ function Sidebar({ isLogged }) {
       {isLogged === undefined ? <FaRegUserCircle className={`iconePerfil ${toggleBar ? 'bigPic' : 'smallPic'}`} onClick={() => history("/login")} /> :
         <div>
           <div>
-            <img src={isLogged.ftperfil} alt="foto de perfil" className={toggleBar ? 'fotoPerfil' : 'fotoCompacta'} />
+            <img src={isLogged.ftperfil} alt="foto de perfil" className={toggleBar ? 'fotoPerfil' : 'fotoCompacta'} onClick={() => history("/perfil")}/>
           </div>
           {toggleBar && isLogged.nome}
         </div>}

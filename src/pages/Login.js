@@ -8,7 +8,7 @@ const Login = (props) => {
   
   return (
     <div className='Home'>
-        <Sidebar/>
+        <Sidebar isLogged={props.isLogged}/>
         <Header/>
         <LoginBack changeLog={props.changeLog}/>
     </div>

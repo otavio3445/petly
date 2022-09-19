@@ -7,7 +7,7 @@ import TodosProdutos from '../components/organism/TodosProdutos/TodosProdutos';
 const Produtos = (props) => {
     return (
         <div className='Home'>
-            <Sidebar />
+            <Sidebar isLogged={props.isLogged}/>
             <Header />
             <TodosProdutos/>
         </div>

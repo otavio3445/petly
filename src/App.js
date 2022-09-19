@@ -6,6 +6,8 @@ import DetalhesPet from "./pages/Detalhes-pet";
 import Pets from "./pages/Pets";
 import Produtos from "./pages/Products";
 import Login from "./pages/Login";
+import Perfil from "./pages/Perfil";
+import Cadastro from "./pages/Cadastro";
 
 const App = () => {
   const [isLogged, setisLogged] = useState(undefined);
@@ -13,10 +15,12 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home isLogged={isLogged}/>} />
-        <Route path="/pets" element={<Pets />} />
-        <Route path="/produtos" element={<Produtos />} />
-        <Route path="/login" element={<Login changeLog={setisLogged}/>} />
-        <Route path="/detalhes-pet" element={<DetalhesPet />} />
+        <Route path="/pets" element={<Pets isLogged={isLogged}/>} />
+        <Route path="/perfil" element={<Perfil isLogged={isLogged} changeLog={setisLogged}/>} />
+        <Route path="/produtos" element={<Produtos isLogged={isLogged}/>} />
+        <Route path="/login" element={<Login changeLog={setisLogged} isLogged={isLogged}/>} />
+        <Route path="/cadastro" element={<Cadastro changeLog={setisLogged} isLogged={isLogged}/>} />
+        <Route path="/detalhes-pet" element={<DetalhesPet isLogged={isLogged}/>} />
         <Route path="/fila" element={<Home />} />
       </Routes>
     </BrowserRouter>
