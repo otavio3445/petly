@@ -38,7 +38,8 @@ function HomeBack(props) {
 
       pets.forEach(pet => {
         let data = pet.data();
-        aux.push(data);
+        let id = pet.id;
+        aux.push({data, id});
       });
 
       products.forEach(prod => {
@@ -59,9 +60,10 @@ function HomeBack(props) {
         <div className="cardPets-section">
           <div id="carouselPet">
             <Slider {...settings}>
-              {petsData.length > 0 && petsData.map((el, index) => (
-                <CardPet data={el} key={index} />
-              ))}
+                {petsData.length > 0 && petsData.map((el, index) => {
+                  return(
+                  <CardPet data={el} isLogged={props.isLogged} key={index} />
+                )})}
             </Slider>
           </div>
           <div className="viewMore">

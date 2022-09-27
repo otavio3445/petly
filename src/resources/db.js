@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, addDoc, updateDoc } from '@firebase/firestore';
+import { getFirestore, collection, getDocs, addDoc, updateDoc, doc } from '@firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from '@firebase/storage';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -43,8 +43,9 @@ export async function setUsersFB(data) {
   return await addDoc(bd_users, data).then((result) => result);
 }
 
-export async function updateDocFB(id, data) {
-  return await updateDoc(id, data).then((result) => result);
+export async function updateDocFB(id, data, db) {
+  const document = doc(firestore, db, id)
+  return await updateDoc(document, data).then((result) => result).catch(err => err);
 }
 
 export async function uploadImage(cpf, file) {

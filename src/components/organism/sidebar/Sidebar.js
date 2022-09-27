@@ -31,9 +31,9 @@ function Sidebar({ isLogged }) {
       {isLogged === undefined ? <FaRegUserCircle className={`iconePerfil ${toggleBar ? 'bigPic' : 'smallPic'}`} onClick={() => history("/login")} /> :
         <div>
           <div>
-            <img src={isLogged.ftperfil} alt="foto de perfil" className={toggleBar ? 'fotoPerfil' : 'fotoCompacta'} onClick={() => history("/perfil")}/>
+            <img src={isLogged.data.ftperfil} alt="foto de perfil" className={toggleBar ? 'fotoPerfil' : 'fotoCompacta'} onClick={() => history("/perfil")}/>
           </div>
-          {toggleBar && isLogged.nome}
+          {toggleBar && isLogged.data.nome}
         </div>}
       {toggleBar && <GiContract className='floatIcon' size={'30px'} onClick={() => settoggleBar(!toggleBar)} />}
       {!toggleBar && <GiExpand className='floatIcon noFloat' size={'30px'} onClick={() => settoggleBar(!toggleBar)} />}
@@ -42,8 +42,8 @@ function Sidebar({ isLogged }) {
         {toggleBar && <p className='text-link' onClick={() => history("/pets")} >Pets para adoção <MdArrowForwardIos /></p>}
         {!toggleBar && <RiShoppingBag3Fill className={'link-icon'} size={'30px'} onClick={() => history("/produtos")} />}
         {toggleBar && <p className='text-link' onClick={() => history("/produtos")} >Produtos para o seu pet <MdArrowForwardIos /></p>}
-        {!toggleBar && <FaRegClock className={'link-icon'} size={'30px'} />}
-        {toggleBar && <p className='text-link'>Minhas listas de espera <MdArrowForwardIos /></p>}
+        {!toggleBar && <FaRegClock className={'link-icon'} size={'30px'} onClick={() => history("/fila")}/>}
+        {toggleBar && <p className='text-link' onClick={() => history("/fila")}>Minhas listas de espera <MdArrowForwardIos /></p>}
       </div>
     </div>
   )

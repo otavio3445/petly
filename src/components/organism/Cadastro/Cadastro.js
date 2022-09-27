@@ -33,7 +33,7 @@ function CadastroBack({ changeLog }) {
     if (email !== "" && senha !== "") {
       users.forEach(user => {
         if (email === user.data().email) {
-          changeLog(user.data());
+          changeLog({data: user.data(), id: user.id});
           history("/");
         }
       })
@@ -77,11 +77,11 @@ function CadastroBack({ changeLog }) {
           cpf,
           endereco: `${endereco}, ${numero}`,
           ftcasa: '',
-          ftperfil: photoUrl !== '' ? photoUrl : fakePhoto
+          ftperfil: photoUrl !== '' ? photoUrl : fakePhoto,
+          fila: []
         };
         await setUsersFB(document).then(result => {
           validateLogin(email, senha)
-          console.log(result);
         });
       } else {
         setemailExist(true);
