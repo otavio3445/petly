@@ -1,18 +1,18 @@
 import React from 'react';
 import Header from '../components/organism/header/Header';
-import HomeBack from '../components/organism/HomeBack/HomeBack';
+import FilaBack from '../components/organism/FilaBack/FilaBack';
 import Sidebar from '../components/organism/sidebar/Sidebar';
 import './global.scss';
 
-const Home = (props) => {
+const Fila = (props) => {
   
   return (
     <div className='Home'>
         <Sidebar isLogged={props.isLogged}/>
         <Header/>
-        <HomeBack isLogged={props.isLogged}/>
+        <FilaBack changeLog={props.changeLog} isLogged={props.isLogged}/>
     </div>
   )
 }
 
-export default Home
+export default Fila

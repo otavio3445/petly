@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import DetalhesPet from "./pages/Detalhes-pet";
 import Pets from "./pages/Pets";
 import Produtos from "./pages/Products";
+import Login from "./pages/Login";
+import Perfil from "./pages/Perfil";
+import Cadastro from "./pages/Cadastro";
+import Fila from "./pages/Fila";
 
-function App() {
+const App = () => {
+  const [isLogged, setisLogged] = useState(undefined);
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/pets" element={<Pets />} />
-        <Route path="/produtos" element={<Produtos />} />
-        <Route path="/login" element={<Home />} />
-        <Route path="/detalhes-pet" element={<DetalhesPet />} />
-        <Route path="/fila" element={<Home />} />
+        <Route path="/" element={<Home isLogged={isLogged}/>} />
+        <Route path="/pets" element={<Pets isLogged={isLogged}/>} />
+        <Route path="/perfil" element={<Perfil isLogged={isLogged} changeLog={setisLogged}/>} />
+        <Route path="/produtos" element={<Produtos isLogged={isLogged}/>} />
+        <Route path="/login" element={<Login changeLog={setisLogged} isLogged={isLogged}/>} />
+        <Route path="/cadastro" element={<Cadastro changeLog={setisLogged} isLogged={isLogged}/>} />
+        <Route path="/detalhes-pet" element={<DetalhesPet isLogged={isLogged}/>} />
+        <Route path="/fila" element={<Fila changeLog={setisLogged} isLogged={isLogged}/>} />
       </Routes>
     </BrowserRouter>
   );

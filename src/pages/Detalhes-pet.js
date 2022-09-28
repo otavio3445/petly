@@ -4,11 +4,11 @@ import Header from '../components/organism/header/Header';
 import Sidebar from '../components/organism/sidebar/Sidebar';
 import './global.scss';
 
-const DetalhesPet = () => {
+const DetalhesPet = (props) => {
   
   return (
     <div className='Home'>
-        <Sidebar/>
+        <Sidebar isLogged={props.isLogged}/>
         <Header/>
         <Detalhes />
     </div>

@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import CardProduct from '../../molecules/card-product/CardProduct';
 import { getDocsFB, getDocsProdsFB } from '../../../resources/db';
 import { useNavigate } from "react-router-dom";
-function HomeBack() {
+function HomeBack(props) {
 
   const [petsData, setpetsData] = useState([]);
   const [prodsData, setprodsData] = useState([]);
@@ -38,7 +38,8 @@ function HomeBack() {
 
       pets.forEach(pet => {
         let data = pet.data();
-        aux.push(data);
+        let id = pet.id;
+        aux.push({data, id});
       });
 
       products.forEach(prod => {
@@ -59,9 +60,10 @@ function HomeBack() {
         <div className="cardPets-section">
           <div id="carouselPet">
             <Slider {...settings}>
-              {petsData.length > 0 && petsData.map((el, index) => (
-                <CardPet data={el} key={index} />
-              ))}
+                {petsData.length > 0 && petsData.map((el, index) => {
+                  return(
+                  <CardPet data={el} isLogged={props.isLogged} key={index} />
+                )})}
             </Slider>
           </div>
           <div className="viewMore">
@@ -78,7 +80,6 @@ function HomeBack() {
           <div id="carouselProducts">
             <Slider {...settingsPro}>
               {prodsData.length > 0 && prodsData.map((el, index) => {
-                console.log(el);
                 return (
                   <CardProduct key={index} data={el}/>
                 )
