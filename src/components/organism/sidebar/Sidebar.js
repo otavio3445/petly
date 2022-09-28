@@ -15,9 +15,9 @@ import {
 import {
   MdArrowForwardIos
 } from 'react-icons/md';
-import {
-  IoExitOutline
-} from 'react-icons/io5';
+// import {
+//   IoExitOutline
+// } from 'react-icons/io5';
 
 import { useNavigate } from "react-router-dom";
 
