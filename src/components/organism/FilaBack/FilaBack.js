@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import './FilaBack.scss';
 import { useNavigate } from "react-router-dom";
+import CardPet from '../../molecules/card-pet/CardPet';
+import Step from '../StepAdocao/Step';
 
 function FilaBack({ isLogged }) {
     const [counter, setcounter] = useState(3);
@@ -10,7 +12,15 @@ function FilaBack({ isLogged }) {
             if (isLogged.data.fila.length > 0) {
                 return (
                     <div>
-                        <h3>Pet na sua lista!</h3>
+                        <h3>Você está na lista de adoção desses pets:</h3>
+                        {isLogged.data.fila.map((el, index) => {
+                            return (
+                                <div className='filaAdocao' key={index}>
+                                    <CardPet data={el.pet.data}/>
+                                    <Step data={el.status}/>
+                                </div>
+                            )
+                        })}
                     </div>
                 )
             } else {

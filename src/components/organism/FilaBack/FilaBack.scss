@@ -15,3 +15,13 @@
     overflow: auto;
     overflow-x: hidden;
 }
+
+
+.filaAdocao {
+    display: flex;
+    align-items: center;
+    & > .cardPet {
+        margin: 0;
+        margin-right: 20px;
+    }
+}
