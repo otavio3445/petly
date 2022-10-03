@@ -42,7 +42,9 @@ function Detalhes({ isLogged }) {
                             } else {
                                 let document = location.state.data.data;
                                 let usuario = isLogged.data;
-                                let hasFila = usuario.fila.find(el => el.data === document);
+                                let hasFila = usuario.fila.find(el => {
+                                    return el.pet.data === document
+                                });
                                 if (hasFila === undefined) {
                                     document.fila = (Number(document.fila)+1).toString();
                                     usuario.fila = [...usuario.fila, {pet: location.state.data, status: ['ok']}]
