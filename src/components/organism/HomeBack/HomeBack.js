@@ -62,7 +62,7 @@ function HomeBack(props) {
             <Slider {...settings}>
                 {petsData.length > 0 && petsData.map((el, index) => {
                   return(
-                  <CardPet data={el} isLogged={props.isLogged} key={index} />
+                  <CardPet data={el.data} fullData={el} isLogged={props.isLogged} key={index} />
                 )})}
             </Slider>
           </div>

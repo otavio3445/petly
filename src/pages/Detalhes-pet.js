@@ -10,7 +10,7 @@ const DetalhesPet = (props) => {
     <div className='Home'>
         <Sidebar isLogged={props.isLogged}/>
         <Header/>
-        <Detalhes />
+        <Detalhes isLogged={props.isLogged}/>
     </div>
   )
 }

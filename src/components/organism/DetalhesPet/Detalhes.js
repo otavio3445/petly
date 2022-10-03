@@ -3,10 +3,10 @@ import './Detalhes.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { updateDocFB } from '../../../resources/db';
 
-function Detalhes() {
+function Detalhes({ isLogged }) {
     const location = useLocation();
     const history = useNavigate();
-
+    console.log(isLogged);
     return (
         <div className='detalhesPet'>
             {location.state !== null ? <div>
@@ -37,18 +37,22 @@ function Detalhes() {
                             <p>Fila: {location.state.data.data.fila} pessoa(s)</p>
                         </div>
                         <div className="btnAddFila" onClick={async() => {
-                            if (location.state.isLogged === undefined) {
+                            if (isLogged === undefined) {
                                 history("/login")
                             } else {
                                 let document = location.state.data.data;
-                                document.fila = (Number(document.fila)+1).toString();
-                                let usuario = location.state.isLogged.data;
-                                usuario.fila = [...usuario.fila, location.state.data]
-                                await updateDocFB(location.state.data.id, document, "Pets").then((res) => {});
-                                await updateDocFB(location.state.isLogged.id, usuario, "Users").then((res) => {
-                                    history("/fila")
-                                });
-                                
+                                let usuario = isLogged.data;
+                                let hasFila = usuario.fila.find(el => el.data === document);
+                                if (hasFila === undefined) {
+                                    document.fila = (Number(document.fila)+1).toString();
+                                    usuario.fila = [...usuario.fila, {pet: location.state.data, status: ['ok']}]
+                                    await updateDocFB(location.state.data.id, document, "Pets").then((res) => {});
+                                    await updateDocFB(location.state.isLogged.id, usuario, "Users").then((res) => {
+                                        history("/fila")
+                                    });
+                                } else {
+                                    alert('Você já está na fila de adoção!')
+                                }
                             }
                         }}>
                             Eu também quero entrar na fila!

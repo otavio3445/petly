@@ -20,8 +20,9 @@ const TodosPets = () => {
                 const aux = [];
                 pets.forEach(pet => {
                     let data = pet.data();
-                    aux.push(data);
-                });
+                    let id = pet.id;
+                    aux.push({data, id});
+                  });
                 setpetsData([...aux]);
             }
         })();
@@ -32,7 +33,7 @@ const TodosPets = () => {
             <div className="cardsContainer">
                 {petsData.map((el, index) => (
                     <div className="containerItem">
-                        <CardPet data={el} key={index} />
+                        <CardPet data={el.data} fullData={el} key={index} />
                     </div>
                 ))}
             </div>
