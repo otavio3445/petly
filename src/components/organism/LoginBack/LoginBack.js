@@ -37,7 +37,7 @@ const LoginBack = ({ changeLog }) => {
                     <input type="password" name="senha" id="loginSenha" placeholder='Senha' onChange={(e) => setsenha(e.target.value)} />
                 </div>
                 <div className="login-button" onClick={validateLogin}>Login</div>
-                <a href='/cadastro'>Cadastrar-se</a>
+                <p className='pLink' onClick={() => history('/cadastro')}>Cadastrar-se</p>
                 {showMessage && <h3>Email ou senha incorretos, por favor tente novamente!</h3>}
             </div>
         </div>
